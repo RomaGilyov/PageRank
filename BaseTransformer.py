@@ -29,8 +29,8 @@ class BaseTransformer(metaclass=ABCMeta):
     def count(self):
         return len(self.__data)
 
-    def enumerate(self):
-        return ((node, number) for number, node in enumerate(list(self.__data.keys())))
+    def nodes_with_number(self):
+        return ((node, number) for number, node in enumerate(self.nodes()))
 
     def nodes(self):
         return list(self.__data.keys())

@@ -45,7 +45,7 @@ class PageRank(object):
     def transition_matrix(self):
         transition_matrix = matrix(zeros((self.__NX, self.__NX)))
 
-        nodes_numbers = dict(self.__graph.enumerate())
+        nodes_numbers = dict(self.__graph.nodes_with_number())
 
         for predecessor, successors in self.__graph.make_graph().adj.items():
             for s, edge_data in successors.items():
