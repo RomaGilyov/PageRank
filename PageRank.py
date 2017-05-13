@@ -14,7 +14,7 @@ class PageRank(object):
 
     __NX = 0
 
-    __epsilon = 0.01
+    __epsilon = 0.005
 
     def __init__(self, graph, recursive=False, truncate_extension=True):
 
@@ -42,27 +42,30 @@ class PageRank(object):
     def get_epsilon(self):
         return self.__epsilon
 
-    def transition_matrix(self):
-        transition_matrix = matrix(zeros((self.__NX, self.__NX)))
+    def references_matrix(self):
+        references_matrix = matrix(zeros((self.__NX, self.__NX)))
 
         nodes_numbers = dict(self.__graph.nodes_with_number())
 
         for predecessor, successors in self.__graph.make_graph().adj.items():
-            for s, edge_data in successors.items():
-                transition_matrix[nodes_numbers[predecessor], nodes_numbers[s]] = edge_data['weight']
+            for successor, edge_data in successors.items():
+                references_matrix[nodes_numbers[predecessor], nodes_numbers[successor]] = edge_data['weight']
 
-        return transition_matrix
+        return references_matrix
 
     def markov_chain(self):
         """
-        1. Add uniform probability matrix E to transition matrix T (L = T + eE)
-        2. Sum all values in each L's row and divide each value in the L's row by the sum
-           after that we getting stochastic matrix G (Markov chain)
+        1. Get matrix with references from the given graph
+        2. Make uniform probability matrix E
+        3. Add matrix with graph's references T to L (L = T + eE) e is needed to make sure that
+           markov chain wont be trapped in a circle
+        4. Sum al values in each L's row and divide the row by the sum to make sure that all
+           values in a row sums to 1, another words make a stochastic matrix G (Markov chain)
 
         :return: matrix
         """
 
-        T = self.transition_matrix()
+        T = self.references_matrix()
         E = ones(T.shape)/self.__NX
         L = T + E * self.__epsilon
         G = matrix(zeros(L.shape))
@@ -73,19 +76,47 @@ class PageRank(object):
         return G
 
     def calculate_ranks(self):
-        PI = random(self.__NX)
-        PI /= sum(PI)
+        """
+        1. Make initial vector
+        2. Get Markov chain with calculated parameters from the graph
+        3. Product markov chain with initial vector till the vector stop changing
+
+           init_vector * markov chain = ranks_vector(1)
+           ranks_vector(1) * markov chain = ranks_vector(2)
+           ranks_vector(2) * markov chain = ranks_vector(3)
+           etc
+        """
+
+        ranks_vector = random(self.__NX)
+        ranks_vector /= sum(ranks_vector)
 
         G = self.markov_chain()
 
-        for __ in range(100):
-            PI = dot(PI, G)
+        check_point = False
+        check_point_index = False
 
-        return PI.tolist()[0]
+        for __ in range(100):
+            ranks_vector = dot(ranks_vector, G)
+
+            if isinstance(check_point, float) and not isinstance(check_point_index, bool):
+                if round(check_point, 5) == round(ranks_vector[0, check_point_index], 5):
+                    break
+
+            if not isinstance(check_point_index, bool):
+                check_point = ranks_vector[0, check_point_index]
+
+            if isinstance(check_point_index, bool):
+                for i in range(len(ranks_vector) + 1):
+                    if ranks_vector[0, i] > 0:
+                        check_point_index = i
+                        check_point = ranks_vector[0, i]
+                        break
+
+        return ranks_vector
 
     def page_rank(self):
 
-        ranks = self.calculate_ranks()
+        ranks = self.calculate_ranks().tolist()[0]
 
         nodes = self.__graph.nodes()
 
@@ -95,3 +126,5 @@ class PageRank(object):
             page_rank[nodes[i]] = ranks[i]
 
         return page_rank
+
+print(PageRank({'page': 'rank', 'rank': 'page page page common', 'common': 'rank page'}).page_rank())
