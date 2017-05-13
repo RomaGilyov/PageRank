@@ -106,7 +106,6 @@ class PageRank(object):
         check_point_index = False
 
         for __ in range(100):
-            print(__)
             ranks_vector = dot(ranks_vector, G)
 
             if not isinstance(check_point, bool) and not isinstance(check_point_index, bool):
