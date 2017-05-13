@@ -127,7 +127,7 @@ class PageRank(object):
 
     def page_rank(self):
         """
-        Attach ranks to nodes and sort ir
+        Attach ranks to nodes
 
         :return: dict
         """
@@ -135,13 +135,12 @@ class PageRank(object):
         ranks = self.calculate_ranks().tolist()[0]
         nodes = self.__graph.nodes()
 
-        page_rank = []
+        page_rank = {}
 
         for i in range(self.__NX):
-            page_rank.append((nodes[i], ranks[i]))
+            page_rank[nodes[i]] = ranks[i]
 
-        return dict(sorted(page_rank, key=lambda x: x[1], reverse=True))
+        return page_rank
 
-print(PageRank(
-    {'page': 'common', 'rank': 'page common', 'common': 'rank page yo more', 'more': 'common, rank', 'yo': 'rank', 'ffs': 'page', 'one_more': 'common'}
-).page_rank())
+    def sorted_page_rank(self, reverse=True):
+        return dict(sorted(self.page_rank().items(), key=lambda x: x[1], reverse=reverse))
