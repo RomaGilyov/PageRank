@@ -43,6 +43,14 @@ class PageRank(object):
         return self.__epsilon
 
     def references_matrix(self):
+        """
+        1. Make matrix filled with zeros
+        2. Get nodes with order numbers
+        3. Attach wait (amount of references) to each matrix field
+
+        :return: matrix
+        """
+
         references_matrix = matrix(zeros((self.__NX, self.__NX)))
 
         nodes_numbers = dict(self.__graph.nodes_with_number())
@@ -85,6 +93,8 @@ class PageRank(object):
            ranks_vector(1) * markov chain = ranks_vector(2)
            ranks_vector(2) * markov chain = ranks_vector(3)
            etc
+
+        :return: matrix
         """
 
         ranks_vector = random(self.__NX)
@@ -96,9 +106,10 @@ class PageRank(object):
         check_point_index = False
 
         for __ in range(100):
+            print(__)
             ranks_vector = dot(ranks_vector, G)
 
-            if isinstance(check_point, float) and not isinstance(check_point_index, bool):
+            if not isinstance(check_point, bool) and not isinstance(check_point_index, bool):
                 if round(check_point, 5) == round(ranks_vector[0, check_point_index], 5):
                     break
 
@@ -106,7 +117,7 @@ class PageRank(object):
                 check_point = ranks_vector[0, check_point_index]
 
             if isinstance(check_point_index, bool):
-                for i in range(len(ranks_vector) + 1):
+                for i in range(ranks_vector.shape[1]):
                     if ranks_vector[0, i] > 0:
                         check_point_index = i
                         check_point = ranks_vector[0, i]
@@ -115,16 +126,22 @@ class PageRank(object):
         return ranks_vector
 
     def page_rank(self):
+        """
+        Attach ranks to nodes and sort ir
+
+        :return: dict
+        """
 
         ranks = self.calculate_ranks().tolist()[0]
-
         nodes = self.__graph.nodes()
 
-        page_rank = {}
+        page_rank = []
 
         for i in range(self.__NX):
-            page_rank[nodes[i]] = ranks[i]
+            page_rank.append((nodes[i], ranks[i]))
 
-        return page_rank
+        return dict(sorted(page_rank, key=lambda x: x[1], reverse=True))
 
-print(PageRank({'page': 'rank', 'rank': 'page page page common', 'common': 'rank page'}).page_rank())
+print(PageRank(
+    {'page': 'common', 'rank': 'page common', 'common': 'rank page yo more', 'more': 'common, rank', 'yo': 'rank', 'ffs': 'page', 'one_more': 'common'}
+).page_rank())
