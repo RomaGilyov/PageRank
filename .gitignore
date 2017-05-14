@@ -2,3 +2,4 @@
 __pycache__
 rgpagerank/__pycache__
 rgpagerank/testdata
+rgpagerank/testdata*.
