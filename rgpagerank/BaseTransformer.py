@@ -80,8 +80,6 @@ class BaseTransformer(metaclass=ABCMeta):
             for successor, weight in edges_weights.items():
                 edges.append([key, successor, {'weight': weight}])
 
-        print(edges)
-
         self.__graph = nx.DiGraph()
         self.__graph.add_nodes_from(list(self.__data.keys()))
         self.__graph.add_edges_from(edges)
