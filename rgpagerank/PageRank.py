@@ -35,11 +35,11 @@ class PageRank(object):
         self.__NX = self.__graph.count()
 
     def set_epsilon(self, value):
-        if value is float:
+        if value is float and round(value, 5) != 0:
             self.__epsilon = value
             return self
 
-        raise TypeError('Epsilon must be float.')
+        raise TypeError('Epsilon must be a float and have a least one not null decimal digit for the first 5 digits.')
 
     def get_epsilon(self):
         return self.__epsilon
@@ -119,7 +119,7 @@ class PageRank(object):
 
             if isinstance(check_point_index, bool):
                 for i in range(ranks_vector.shape[1]):
-                    if ranks_vector[0, i] > 0:
+                    if round(ranks_vector[0, i], 5) > self.__epsilon:
                         check_point_index = i
                         check_point = ranks_vector[0, i]
                         break
@@ -145,3 +145,7 @@ class PageRank(object):
 
     def sorted_page_rank(self, reverse=True):
         return dict(sorted(self.page_rank().items(), key=lambda x: x[1], reverse=reverse))
+
+
+if 0.000 == 0:
+    print('yo')
