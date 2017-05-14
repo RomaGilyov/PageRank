@@ -4,6 +4,8 @@ from RGPageRank.DirectoryTransformer import DirectoryTransformer
 from RGPageRank.PageRank import PageRank
 from os import path
 
+dir_path = path.dirname(path.abspath(__file__))
+
 
 class DictTransformerTest(unittest.TestCase):
 
@@ -27,7 +29,7 @@ class DictTransformerTest(unittest.TestCase):
 class DirectoryTransformerTest(unittest.TestCase):
 
     def test_not_recursive(self):
-        dir_transformer = DirectoryTransformer('..' + path.sep + 'tests' + path.sep + 'testdata')
+        dir_transformer = DirectoryTransformer(dir_path + path.sep + 'testdata')
 
         self.assertEquals(['Carl', 'Jimmy', 'John'], dir_transformer.nodes())
         self.assertEquals({'Carl': 0, 'Jimmy': 1, 'John': 2}, dict(dir_transformer.nodes_with_number()))
@@ -42,7 +44,7 @@ class DirectoryTransformerTest(unittest.TestCase):
         )
 
         ntr_dir_transformer = DirectoryTransformer(
-            '..' + path.sep + 'tests' + path.sep + 'testdata',
+            dir_path + path.sep + 'testdata',
             truncate_extension=False
         )
 
@@ -58,7 +60,7 @@ class DirectoryTransformerTest(unittest.TestCase):
         )
 
     def test_recursive(self):
-        dir_transformer = DirectoryTransformer('..' + path.sep + 'tests' + path.sep + 'testdata', recursive=True)
+        dir_transformer = DirectoryTransformer(dir_path + path.sep + 'testdata', recursive=True)
 
         self.assertEquals(['Carl', 'Jimmy', 'John', 'Bob', 'Denis'], dir_transformer.nodes())
         self.assertEquals(
@@ -78,7 +80,7 @@ class DirectoryTransformerTest(unittest.TestCase):
         )
 
         ntr_dir_transformer = DirectoryTransformer(
-            '..' + path.sep + 'tests' + path.sep + 'testdata',
+            dir_path + path.sep + 'testdata',
             truncate_extension=False,
             recursive=True
         )
@@ -109,7 +111,7 @@ class PageRankTest(unittest.TestCase):
         self.assertEquals(0.444, round(ranks['Mike'], 3))
         self.assertEquals(0.334, round(ranks['Carl'], 3))
 
-        dir_page_rank = PageRank('..' + path.sep + 'tests' + path.sep + 'testdata', recursive=True)
+        dir_page_rank = PageRank(dir_path + 'testdata', recursive=True)
 
         dir_ranks = dir_page_rank.page_rank()
 
