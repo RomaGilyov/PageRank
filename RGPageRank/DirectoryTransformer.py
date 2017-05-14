@@ -19,7 +19,7 @@ class DirectoryTransformer(BaseTransformer):
     """
     current directory
     """
-    __dir_path = path.dirname(path.abspath(__file__))
+    __dir_path = ''
 
     """
     gather all errors during extracting data
@@ -30,6 +30,7 @@ class DirectoryTransformer(BaseTransformer):
 
         self.__recursive = recursive
         self.__truncate_extension = truncate_extension
+        self.__dir_path = path.dirname(path.abspath(__file__))
 
         BaseTransformer.__init__(self, dir_name)
 
