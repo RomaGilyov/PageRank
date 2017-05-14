@@ -145,3 +145,7 @@ class PageRank(object):
 
     def sorted_page_rank(self, reverse=True):
         return dict(sorted(self.page_rank().items(), key=lambda x: x[1], reverse=reverse))
+
+DictTransformer(
+    {'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'}
+).draw_graph()

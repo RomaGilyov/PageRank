@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from re import findall
 import networkx as nx
+from pylab import show
 
 
 class BaseTransformer(metaclass=ABCMeta):
@@ -79,8 +80,24 @@ class BaseTransformer(metaclass=ABCMeta):
             for successor, weight in edges_weights.items():
                 edges.append([key, successor, {'weight': weight}])
 
+        print(edges)
+
         self.__graph = nx.DiGraph()
         self.__graph.add_nodes_from(list(self.__data.keys()))
         self.__graph.add_edges_from(edges)
 
         return self.__graph
+
+    def draw_graph(self):
+        G = self.make_graph()
+
+        edge_labels = dict([((u, v,), d['weight'])
+                            for u, v, d in G.edges(data=True)])
+
+        node_labels = {node: node for node in G.nodes()}
+
+        pos = nx.spring_layout(G)
+        nx.draw_networkx_labels(G, pos, labels=node_labels)
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+        nx.draw(G, pos, node_size=1000)
+        show()
