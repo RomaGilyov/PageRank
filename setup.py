@@ -36,3 +36,6 @@ setup(
     install_requires=['numpy', 'networkx']
 )
 
+from RGPageRank import PageRank
+
+print(PageRank())

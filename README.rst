@@ -12,7 +12,7 @@ Installation
 Usage
 -----
 
-    from rgpagerank import *
+    from RGPageRank import PageRank
 
 `You may pass either directory name or dictionary with data as a first (data) parameter to the new object:`
 
@@ -51,6 +51,9 @@ data from 'dir/test.txt' and 'dir/nested_dir/test.txt' for the 'test' key`
 
 `There are also two helper classes: DictTransformer and DirectoryTransformer which is actually transform a given data
 to a directed graph you may use it to get the graph and do something with it or draw the graph`
+
+    from RGPageRank import DictTransformer
+    from RGPageRank import DirectoryTransformer
 
     #dir_transformer = DirectoryTransformer('directory_name', recursive=True, truncate_extension=True)
 
