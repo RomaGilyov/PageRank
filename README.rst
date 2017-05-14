@@ -47,12 +47,14 @@ data from 'dir/test.txt' and 'dir/nested_dir/test.txt' for the 'test' key`
 `To get page rank for the data use either 'page_rank()' or 'sorted_page_rank()'`
 
     print(dict_pg.page_rank())
+
     print(dict_pg.sorted_page_rank(reverse=True))
 
 `There are also two helper classes: DictTransformer and DirectoryTransformer which is actually transform a given data
 to a directed graph you may use it to get the graph and do something with it or draw the graph`
 
     from RGPageRank import DictTransformer
+
     from RGPageRank import DirectoryTransformer
 
     #dir_transformer = DirectoryTransformer('directory_name', recursive=True, truncate_extension=True)
@@ -60,7 +62,9 @@ to a directed graph you may use it to get the graph and do something with it or 
     dict_transformer = DirectoryTransformer({'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'})
 
     #print(dir_transformer.make_graph())
+
     #dir_transformer.draw_graph()
 
     print(dict_transformer.make_graph())
+
     dict_transformer.draw_graph()
