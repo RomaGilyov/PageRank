@@ -21,10 +21,8 @@ setup(
 
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Students',
         'Intended Audience :: Developers',
         'Topic :: Software Development',
-        'License :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
@@ -37,3 +35,4 @@ setup(
 
     install_requires=['numpy', 'networkx']
 )
+

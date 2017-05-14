@@ -6,7 +6,7 @@ Google page rank
 Installation
 ------------
 
-    pip install rgpagerank
+    pip install RGPageRank
 
 
 Usage
@@ -42,9 +42,7 @@ dir:
 `If there are files with the same name the content of the files will be merged, so the dict above will contain
 data from 'dir/test.txt' and 'dir/nested_dir/test.txt' for the 'test' key`
 
-    dict_pg = PageRank(
-        {'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'}
-    )
+    dict_pg = PageRank({'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'})
 
 `To get page rank for the data use either 'page_rank()' or 'sorted_page_rank()'`
 
@@ -55,9 +53,8 @@ data from 'dir/test.txt' and 'dir/nested_dir/test.txt' for the 'test' key`
 to a directed graph you may use it to get the graph and do something with it or draw the graph`
 
     #dir_transformer = DirectoryTransformer('directory_name', recursive=True, truncate_extension=True)
-    dict_transformer = DirectoryTransformer(
-        {'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'}
-    )
+
+    dict_transformer = DirectoryTransformer({'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'})
 
     #print(dir_transformer.make_graph())
     #dir_transformer.draw_graph()

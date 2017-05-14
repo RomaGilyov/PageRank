@@ -1,3 +1,6 @@
 .idea
 __pycache__
 rgpagerank/__pycache__
+dist
+build
+RGPageRank.egg-info
