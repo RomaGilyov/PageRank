@@ -21,18 +21,18 @@ Usage
 
 
 Where:
-1. directory_name - can be either absolute path to a directory or relative path, in the second case the script will use path of the script where the script file contains
-2. recursive - read nested directories or not
-3. truncate_extension - truncate extensions of the files
+    1. directory_name - can be either absolute path to a directory or relative path, in the second case the script will use path of the script where the script file contains
+    2. recursive - read nested directories or not
+    3. truncate_extension - truncate extensions of the files
 
 `Each file name inside the directory is a node name and content are the corresponding data:`
 
-dir:
-1. test.txt
-2. test1.txt
-3. nested_dir:
-    1. test2.txt
-    2. test.txt
+    dir:
+        test.txt
+        test1.txt
+        nested_dir:
+            test2.txt
+            test.txt
 
 `So it will be: {'test': 'test data', 'test1': 'test1 data', 'test2': 'test2 data'}`
 
