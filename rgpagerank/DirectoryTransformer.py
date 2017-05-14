@@ -1,7 +1,8 @@
-from BaseTransformer import BaseTransformer
-from os import path
-from os import listdir
 from os import getcwd
+from os import listdir
+from os import path
+
+from rgpagerank.BaseTransformer import BaseTransformer
 
 
 class DirectoryTransformer(BaseTransformer):

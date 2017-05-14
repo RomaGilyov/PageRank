@@ -1,11 +1,13 @@
 from collections import OrderedDict
-from BaseTransformer import BaseTransformer
-from DirectoryTransformer import DirectoryTransformer
-from DictTransformer import DictTransformer
-from numpy import zeros
+
+from rgpagerank.BaseTransformer import BaseTransformer
+from rgpagerank.DirectoryTransformer import DirectoryTransformer
 from numpy import matrix
-from numpy.random import random
 from numpy import sum, ones, dot
+from numpy import zeros
+from numpy.random import random
+
+from rgpagerank.DictTransformer import DictTransformer
 
 
 class PageRank(object):
@@ -89,7 +91,7 @@ class PageRank(object):
         2. Get Markov chain with calculated parameters from the graph
         3. Product markov chain with initial vector till the vector stop changing
 
-           init_vector * markov chain = ranks_vector(1)
+           init_vector(ranks_vector(0)) * markov chain = ranks_vector(1)
            ranks_vector(1) * markov chain = ranks_vector(2)
            ranks_vector(2) * markov chain = ranks_vector(3)
            etc
