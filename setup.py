@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 setup(
     name='RGPageRank',
 
-    version='0.0.2 dev',
+    version='0.0.3 dev',
 
     description='Find the most relevant information from the given collection of data.',
 
@@ -33,6 +33,6 @@ setup(
 
     packages=find_packages(exclude=['tests']),
 
-    install_requires=['numpy', 'networkx']
+    install_requires=['numpy', 'networkx', 'matplotlib']
 )
 
