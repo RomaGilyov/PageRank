@@ -1,4 +1,3 @@
-from os import getcwd
 from os import listdir
 from os import path
 
@@ -20,7 +19,7 @@ class DirectoryTransformer(BaseTransformer):
     """
     current directory
     """
-    __dir_path = path.realpath(path.join(getcwd(), path.dirname(__file__)))
+    __dir_path = path.dirname(path.abspath(__file__))
 
     """
     gather all errors during extracting data
