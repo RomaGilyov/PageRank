@@ -1,13 +1,13 @@
 from collections import OrderedDict
 
-from rgpagerank.BaseTransformer import BaseTransformer
-from rgpagerank.DirectoryTransformer import DirectoryTransformer
+from RGPageRank.BaseTransformer import BaseTransformer
+from RGPageRank.DirectoryTransformer import DirectoryTransformer
 from numpy import matrix
 from numpy import sum, ones, dot
 from numpy import zeros
 from numpy.random import random
 
-from rgpagerank.DictTransformer import DictTransformer
+from RGPageRank.DictTransformer import DictTransformer
 
 
 class PageRank(object):
@@ -145,7 +145,3 @@ class PageRank(object):
 
     def sorted_page_rank(self, reverse=True):
         return dict(sorted(self.page_rank().items(), key=lambda x: x[1], reverse=reverse))
-
-
-if 0.000 == 0:
-    print('yo')

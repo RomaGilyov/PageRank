@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-from rgpagerank.BaseTransformer import BaseTransformer
+from RGPageRank.BaseTransformer import BaseTransformer
 
 
 class DictTransformer(BaseTransformer):

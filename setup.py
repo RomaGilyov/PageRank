@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 setup(
     name='RGPageRank',
 
-    version='0.1.0 dev',
+    version='0.0.2 dev',
 
     description='Find the most relevant information from the given collection of data.',
 
@@ -36,6 +36,3 @@ setup(
     install_requires=['numpy', 'networkx']
 )
 
-from RGPageRank import PageRank
-
-print(PageRank())
