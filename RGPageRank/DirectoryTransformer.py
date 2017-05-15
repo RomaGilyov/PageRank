@@ -1,5 +1,6 @@
 from os import listdir
 from os import path
+from os import getcwd
 
 from RGPageRank.BaseTransformer import BaseTransformer
 
@@ -30,9 +31,7 @@ class DirectoryTransformer(BaseTransformer):
 
         self.__recursive = recursive
         self.__truncate_extension = truncate_extension
-        self.__dir_path = path.dirname(path.abspath(__file__))
-
-        print(self.__dir_path)
+        self.__dir_path = getcwd()
 
         BaseTransformer.__init__(self, dir_name)
 
@@ -75,10 +74,10 @@ class DirectoryTransformer(BaseTransformer):
         if not dir_name:
             return self.__dir_path
 
-        if dir_name is str and dir_name.find(path.sep):
+        if isinstance(dir_name, str) and (dir_name.find(':\\') == 1 or dir_name.find('/') == 0):
             return dir_name
 
-        return self.__dir_path + path.sep + dir_name
+        return self.__dir_path + path.sep + str(dir_name).lstrip(path.sep)
 
     @staticmethod
     def merge_dicts(dict1, dict2):

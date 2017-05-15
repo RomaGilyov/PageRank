@@ -2,9 +2,6 @@ import unittest
 from RGPageRank.DictTransformer import DictTransformer
 from RGPageRank.DirectoryTransformer import DirectoryTransformer
 from RGPageRank.PageRank import PageRank
-from os import path
-
-dir_path = path.dirname(path.abspath(__file__))
 
 
 class DictTransformerTest(unittest.TestCase):
