@@ -32,6 +32,8 @@ class DirectoryTransformer(BaseTransformer):
         self.__truncate_extension = truncate_extension
         self.__dir_path = path.dirname(path.abspath(__file__))
 
+        print(self.__dir_path)
+
         BaseTransformer.__init__(self, dir_name)
 
     def prepare(self, data):
