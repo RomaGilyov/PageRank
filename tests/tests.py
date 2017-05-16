@@ -114,6 +114,14 @@ class PageRankTest(unittest.TestCase):
         self.assertEquals(0.001, round(dir_ranks['Bob'], 3))
         self.assertEquals(0.001, round(dir_ranks['Denis'], 3))
 
+        sorted_ranks = dir_page_rank.sorted_page_rank()
+
+        self.assertEquals(0.333, round(sorted_ranks['Carl'], 3))
+        self.assertEquals(0.444, round(sorted_ranks['Jimmy'], 3))
+        self.assertEquals(0.222, round(sorted_ranks['John'], 3))
+        self.assertEquals(0.001, round(sorted_ranks['Bob'], 3))
+        self.assertEquals(0.001, round(sorted_ranks['Denis'], 3))
+
 
 if __name__ == '__main__':
    unittest.main()

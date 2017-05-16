@@ -55,7 +55,7 @@ class PageRank(object):
 
         references_matrix = matrix(zeros((self.__NX, self.__NX)))
 
-        nodes_numbers = dict(self.__graph.nodes_with_number())
+        nodes_numbers = self.__graph.nodes_with_number()
 
         for predecessor, successors in self.__graph.make_graph().adj.items():
             for successor, edge_data in successors.items():
@@ -136,7 +136,7 @@ class PageRank(object):
         ranks = self.calculate_ranks().tolist()[0]
         nodes = self.__graph.nodes()
 
-        page_rank = {}
+        page_rank = OrderedDict([])
 
         for i in range(self.__NX):
             page_rank[nodes[i]] = ranks[i]
@@ -144,4 +144,4 @@ class PageRank(object):
         return page_rank
 
     def sorted_page_rank(self, reverse=True):
-        return dict(sorted(self.page_rank().items(), key=lambda x: x[1], reverse=reverse))
+        return OrderedDict(sorted(self.page_rank().items(), key=lambda x: x[1], reverse=reverse))

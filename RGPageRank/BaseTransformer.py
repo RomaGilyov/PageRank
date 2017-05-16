@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 from re import findall
 import networkx as nx
 from pylab import show
+from collections import OrderedDict
 
 
 class BaseTransformer(metaclass=ABCMeta):
@@ -31,7 +32,7 @@ class BaseTransformer(metaclass=ABCMeta):
         return len(self.__data)
 
     def nodes_with_number(self):
-        return ((node, number) for number, node in enumerate(self.nodes()))
+        return OrderedDict((node, number) for number, node in enumerate(self.nodes()))
 
     def nodes(self):
         return list(self.__data.keys())
@@ -44,7 +45,7 @@ class BaseTransformer(metaclass=ABCMeta):
         :return: dict
         """
 
-        links = {}
+        links = OrderedDict([])
 
         pattern = ''
         for node in self.__data.keys():
@@ -81,7 +82,7 @@ class BaseTransformer(metaclass=ABCMeta):
                 edges.append([key, successor, {'weight': weight}])
 
         self.__graph = nx.DiGraph()
-        self.__graph.add_nodes_from(list(self.__data.keys()))
+        self.__graph.add_nodes_from(self.nodes())
         self.__graph.add_edges_from(edges)
 
         return self.__graph

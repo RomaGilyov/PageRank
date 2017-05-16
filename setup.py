@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 setup(
     name='RGPageRank',
 
-    version='0.0.7 dev',
+    version='0.0.77 dev',
 
     description='Find the most relevant information from the given collection of data.',
 

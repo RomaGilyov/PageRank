@@ -1,6 +1,7 @@
 from os import listdir
 from os import path
 from os import getcwd
+from collections import OrderedDict
 
 from RGPageRank.BaseTransformer import BaseTransformer
 
@@ -46,7 +47,7 @@ class DirectoryTransformer(BaseTransformer):
 
     def extract_data(self, dir_name):
 
-        dir_data = {}
+        dir_data = OrderedDict([])
 
         for file_name in listdir(dir_name):
 
