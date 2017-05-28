@@ -34,8 +34,8 @@ dir:
 2. test1.txt
 3. nested_dir:
 
-    1. test2.txt
-    2. test.txt
+  1. test2.txt
+  2. test.txt
 
 `So it will be: {'test': 'test data', 'test1': 'test1 data', 'test2': 'test2 data'}`
 
@@ -57,13 +57,13 @@ to a directed graph you may use it to get the graph and do something with it or 
 
     from RGPageRank import DirectoryTransformer
 
-    #dir_transformer = DirectoryTransformer('directory_name', recursive=True, truncate_extension=True)
+    dir_transformer = DirectoryTransformer('directory_name', recursive=True, truncate_extension=True)
 
     dict_transformer = DirectoryTransformer({'Jimmy': 'Hello John and Carl, Carl', 'Carl': 'Hi John', 'John': 'Sup Jimmy and Carl'})
 
-    #print(dir_transformer.make_graph())
+    print(dir_transformer.make_graph())
 
-    #dir_transformer.draw_graph()
+    dir_transformer.draw_graph()
 
     print(dict_transformer.make_graph())
 

@@ -48,7 +48,7 @@ class PageRank(object):
         """
         1. Make matrix filled with zeros
         2. Get nodes with order numbers
-        3. Attach wait (amount of references) to each matrix field
+        3. Attach weight to each matrix field
 
         :return: matrix
         """
